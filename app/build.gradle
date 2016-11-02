@@ -11,10 +11,29 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+    signingConfigs {
+        dev {
+            keyAlias "buildtest-dev"
+            keyPassword System.getenv("ANDROID_KEYSTORE_DEV_PASSWORD")
+            storeFile file("dev.jks")
+            storePassword System.getenv("ANDROID_KEYSTORE_DEV_PASSWORD")
+        }
         release {
+            keyAlias "buildtest-release"
+            keyPassword System.getenv("ANDROID_KEYSTORE_RELEASE_PASSWORD")
+            storeFile file("release.jks")
+            storePassword System.getenv("ANDROID_KEYSTORE_RELEASE_PASSWORD")
+        }
+    }
+    buildTypes {
+        dev {
             minifyEnabled false
+            signingConfig signingConfigs.dev
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
