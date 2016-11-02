@@ -20,8 +20,8 @@ env:
     - BUILD=assembleDev S3_DIR=dev-$TAG
     - BUILD=assembleRelease S3_DIR=prod-$TAG
 
-install:
-  - gem install supply
+#install:
+#  - gem install supply
 
 before_script:
   - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ./ci/dev.jks.enc -out dev.jks -d
