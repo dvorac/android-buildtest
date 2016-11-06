@@ -20,19 +20,21 @@ env:
     - BUILD=assembleDev S3_DIR=dev-$TAG
     - BUILD=assembleRelease S3_DIR=prod-$TAG
 
+before_install:
+  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ci/dev.jks.enc -out dev.jks -d
+  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ci/release.jks.enc -out release.jks -d
+#  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ./ci/playstore-publish-credentials.json.enc -out playstore-publish-credentials.json -d
+
 #install:
 #  - gem install supply
 
 before_script:
-  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ci/dev.jks.enc -out dev.jks -d
-  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ci/release.jks.enc -out release.jks -d
   - chmod +x ./gradlew
 
 script:
   - ./gradlew $BUILD
-#
+
 #after_success:
-#  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ./ci/playstore-publish-credentials.json.enc -out playstore-publish-credentials.json -d
 #  - supply init --json_key playstore-publish-credentials.json --package com.
 
 deploy:
