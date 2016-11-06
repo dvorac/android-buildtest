@@ -24,8 +24,8 @@ env:
 #  - gem install supply
 
 before_script:
-  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ./ci/dev.jks.enc -out dev.jks -d
-  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ./ci/release.jks.enc -out release.jks -d
+  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ci/dev.jks.enc -out dev.jks -d
+  - openssl aes-256-cbc -K $encrypted_11c483ba8457_key -iv $encrypted_11c483ba8457_iv -in ci/release.jks.enc -out release.jks -d
   - chmod +x ./gradlew
 
 script:
