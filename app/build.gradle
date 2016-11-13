@@ -15,13 +15,13 @@ android {
         dev {
             keyAlias "buildtest-dev"
             keyPassword System.getenv("ANDROID_KEYSTORE_DEV_PASSWORD")
-            storeFile file("dev.jks")
+            storeFile file("../ci/dev.jks")
             storePassword System.getenv("ANDROID_KEYSTORE_DEV_PASSWORD")
         }
         release {
             keyAlias "buildtest-release"
             keyPassword System.getenv("ANDROID_KEYSTORE_RELEASE_PASSWORD")
-            storeFile file("release.jks")
+            storeFile file("../ci/release.jks")
             storePassword System.getenv("ANDROID_KEYSTORE_RELEASE_PASSWORD")
         }
     }
